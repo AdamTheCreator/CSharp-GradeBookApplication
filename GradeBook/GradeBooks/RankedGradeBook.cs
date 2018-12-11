@@ -25,7 +25,34 @@ namespace GradeBook.GradeBooks {
 				return 'D';
 			else
 				return 'F';
-			return base.GetLetterGrade (averageGrade);
+		}
+
+		public override void CalculateStatistics()
+		{
+			if (Students.Count < 5) 
+			{
+				Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+				return;
+			}
+			else
+				base.CalculateStatistics();
+		}
+
+		public override void CalculateStudentStatistics(string name)
+		{
+			var studentsWithGrades = 0;
+			foreach(var student in Students)
+			{
+				if (!Equals(student.AverageGrade, null))
+					studentsWithGrades += 1;
+			}
+
+			if (studentsWithGrades < 5)
+			{
+				Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+			}
+			else
+				base.CalculateStudentStatistics(name);
 		}
 	}
 }
