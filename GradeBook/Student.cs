@@ -13,7 +13,8 @@ namespace GradeBook
         public StudentType Type { get; set; }
         public EnrollmentType Enrollment { get; set; }
         public List<double> Grades { get; set; }
-        [JsonIgnore]
+		public bool IsWeighted { get; set; }
+		[JsonIgnore]
         public double AverageGrade
         {
             get
